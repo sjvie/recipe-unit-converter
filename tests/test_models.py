@@ -1,6 +1,6 @@
 import pytest
 from pydantic import ValidationError
-from src.recipe_unit_converter.models import (
+from recipe_unit_converter.models import (
     ParsedQuery,
     ConversionResult,
     IngredientEntry,
@@ -128,7 +128,7 @@ class TestUnitsDb:
 
     def test_units_db_structure(self):
         """UnitsDb should have required structure."""
-        from src.recipe_unit_converter.models import VolumeDefinition, WeightDefinition, TempDefinition
+        from recipe_unit_converter.models import VolumeDefinition, WeightDefinition, TempDefinition
 
         db = UnitsDb(
             volume=VolumeDefinition(

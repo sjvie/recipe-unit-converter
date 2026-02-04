@@ -1,14 +1,14 @@
 import pytest
 import sys
 from io import StringIO
-from src.recipe_unit_converter.cli import main, format_output
+from recipe_unit_converter.cli import main, format_output
 
 
 class TestCLIFormatting:
     """Test CLI output formatting."""
 
     def test_format_simple(self):
-        from src.recipe_unit_converter.models import ConversionResult
+        from recipe_unit_converter.models import ConversionResult
         result = ConversionResult(
             original_query="2 cups flour",
             source_unit="cup",
@@ -22,7 +22,7 @@ class TestCLIFormatting:
         assert output == "473.176 g"
 
     def test_format_verbose(self):
-        from src.recipe_unit_converter.models import ConversionResult
+        from recipe_unit_converter.models import ConversionResult
         result = ConversionResult(
             original_query="2 cups flour",
             source_unit="cup",
@@ -39,7 +39,7 @@ class TestCLIFormatting:
 
     def test_format_json(self):
         import json
-        from src.recipe_unit_converter.models import ConversionResult
+        from recipe_unit_converter.models import ConversionResult
         result = ConversionResult(
             original_query="2 cups flour",
             source_unit="cup",
@@ -57,7 +57,7 @@ class TestCLIFormatting:
 
     def test_format_verbose_without_ingredient(self):
         """Test verbose format without ingredient."""
-        from src.recipe_unit_converter.models import ConversionResult
+        from recipe_unit_converter.models import ConversionResult
         result = ConversionResult(
             original_query="1 cup",
             source_unit="cup",
@@ -73,7 +73,7 @@ class TestCLIFormatting:
 
     def test_format_invalid_type(self):
         """Test that invalid format type raises ValueError."""
-        from src.recipe_unit_converter.models import ConversionResult
+        from recipe_unit_converter.models import ConversionResult
         result = ConversionResult(
             original_query="1 cup",
             source_unit="cup",

@@ -1,10 +1,10 @@
 import pytest
 import json
 from pathlib import Path
-from src.recipe_unit_converter.repository import Repository
-from src.recipe_unit_converter.converter import Converter
-from src.recipe_unit_converter.parser import Parser
-from src.recipe_unit_converter.exceptions import (
+from recipe_unit_converter.repository import Repository
+from recipe_unit_converter.converter import Converter
+from recipe_unit_converter.parser import Parser
+from recipe_unit_converter.exceptions import (
     IngredientAmbiguousError,
     IngredientNotFoundError,
     InvalidConversionError,
@@ -208,7 +208,7 @@ class TestCLIEdgeCases:
     def test_main_unexpected_error(self, monkeypatch, capsys):
         """Test CLI with unexpected error (non-ConverterError exception)."""
         import sys
-        from src.recipe_unit_converter.cli import main
+        from recipe_unit_converter.cli import main
 
         # Mock to raise an unexpected exception
         def mock_converter_init(*args, **kwargs):

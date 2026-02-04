@@ -1,7 +1,7 @@
 import pytest
 from pathlib import Path
-from src.recipe_unit_converter.repository import Repository
-from src.recipe_unit_converter.exceptions import IngredientNotFoundError, IngredientAmbiguousError
+from recipe_unit_converter.repository import Repository
+from recipe_unit_converter.exceptions import IngredientNotFoundError, IngredientAmbiguousError
 
 
 @pytest.fixture

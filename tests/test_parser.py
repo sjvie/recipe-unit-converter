@@ -1,6 +1,6 @@
 import pytest
-from src.recipe_unit_converter.parser import Parser
-from src.recipe_unit_converter.exceptions import ParsingError
+from recipe_unit_converter.parser import Parser
+from recipe_unit_converter.exceptions import ParsingError
 
 
 class TestNumericParsing:
