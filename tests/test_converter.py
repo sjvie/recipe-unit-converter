@@ -1,8 +1,8 @@
 import pytest
 from pathlib import Path
-from src.repository import Repository
-from src.converter import Converter
-from src.exceptions import InvalidConversionError, ParsingError, IngredientNotFoundError
+from recipe_unit_converter.repository import Repository
+from recipe_unit_converter.converter import Converter
+from recipe_unit_converter.exceptions import InvalidConversionError, ParsingError, IngredientNotFoundError
 
 
 @pytest.fixture
@@ -193,3 +193,19 @@ class TestConversionResultModel:
         result = converter.convert("1 cup", "ml")
         assert len(result.explanation) > 0
         assert isinstance(result.explanation, str)
+
+
+class TestEnhancedParsing:
+    """Test enhanced parsing features: fractions and word numbers."""
+
+    def test_simple_fraction(self, converter):
+        """Parse simple fraction like 1/4."""
+        result = converter.convert("1/4 cup", "ml")
+        expected = 0.25 * 236.588
+        assert abs(result.result_value - expected) < 0.01
+
+    def test_mixed_fraction(self, converter):
+        """Parse mixed fraction like 1 1/2."""
+        result = converter.convert("1 1/2 cup", "ml")
+        expected = 1.5 * 236.588
+        assert abs(result.result_value - expected) < 0.01
