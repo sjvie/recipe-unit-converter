@@ -223,7 +223,7 @@ Convert between recipe measurement units (cups, grams, tablespoons, etc.)
 ## Installation
 
 ```bash
-pip install git+https://github.com/yourusername/recipe-unit-converter.git
+pip install git+https://github.com/sjvie/recipe-unit-converter.git
 ```
 
 ## Usage
