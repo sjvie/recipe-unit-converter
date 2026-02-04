@@ -1,0 +1,77 @@
+{
+  "volume": {
+    "base": "ml",
+    "units": {
+      "ml": {
+        "factor": 1.0,
+        "aliases": ["milliliter", "milliliters", "millilitre", "millilitres"]
+      },
+      "l": {
+        "factor": 1000.0,
+        "aliases": ["liter", "liters", "litre", "litres"]
+      },
+      "tsp": {
+        "factor": 4.92892,
+        "aliases": ["teaspoon", "teaspoons"]
+      },
+      "tbsp": {
+        "factor": 14.7868,
+        "aliases": ["tablespoon", "tablespoons", "tbs"]
+      },
+      "fl_oz": {
+        "factor": 29.57,
+        "aliases": ["fluid ounce", "fluid ounces", "fl oz", "floz"]
+      },
+      "cup": {
+        "factor": 236.588,
+        "aliases": ["cups", "cp"]
+      },
+      "pint": {
+        "factor": 473.18,
+        "aliases": ["pint", "pints", "pt"]
+      },
+      "quart": {
+        "factor": 946.35,
+        "aliases": ["quart", "quarts", "qt"]
+      },
+      "gal": {
+        "factor": 3785.411,
+        "aliases": ["gallon", "gallons"]
+      }
+    }
+  },
+  "weight": {
+    "base": "g",
+    "units": {
+      "g": {
+        "factor": 1.0,
+        "aliases": ["gram", "grams", "gramme", "grammes"]
+      },
+      "kg": {
+        "factor": 1000.0,
+        "aliases": ["kilogram", "kilograms", "kilogramme", "kilogrammes", "kilo", "kilos"]
+      },
+      "oz": {
+        "factor": 28.3495,
+        "aliases": ["ounce", "ounces"]
+      },
+      "lb": {
+        "factor": 453.592,
+        "aliases": ["pound", "pounds", "lbs"]
+      }
+    }
+  },
+  "temperature": {
+    "units": {
+      "c": {
+        "aliases": ["celsius", "centigrade"]
+      },
+      "f": {
+        "aliases": ["fahrenheit"]
+      },
+      "k": {
+        "aliases": ["kelvin"]
+      }
+    }
+  }
+}

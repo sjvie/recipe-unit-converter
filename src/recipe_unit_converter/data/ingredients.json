@@ -1,0 +1,793 @@
+{
+  "ingredients": [
+    {
+      "id": "flour_ap",
+      "names": [
+        "flour",
+        "all purpose flour",
+        "ap flour",
+        "white flour",
+        "wheat flour",
+        "plain flour"
+      ],
+      "density": 0.511
+    },
+    {
+      "id": "flour_bread",
+      "names": [
+        "bread flour",
+        "strong flour",
+        "hard flour",
+        "high protein flour"
+      ],
+      "density": 0.545
+    },
+    {
+      "id": "flour_cake",
+      "names": [
+        "cake flour",
+        "soft flour",
+        "pastry flour",
+        "low protein flour"
+      ],
+      "density": 0.507
+    },
+    {
+      "id": "flour_whole_wheat",
+      "names": [
+        "whole wheat flour",
+        "wholemeal flour",
+        "graham flour"
+      ],
+      "density": 0.478
+    },
+    {
+      "id": "flour_almond",
+      "names": [
+        "almond flour"
+      ],
+      "density": 0.406
+    },
+    {
+      "id": "ground_almond",
+      "names": [
+        "ground almonds",
+        "almond meal"
+      ],
+      "density": 0.357
+    },
+    {
+      "id": "cornstarch",
+      "names": [
+        "cornstarch",
+        "maize starch",
+        "corn starch"
+      ],
+      "density": 0.474
+    },
+    {
+      "id": "cornmeal",
+      "names": [
+        "cornmeal",
+        "maize meal",
+        "polenta",
+        "corn grits"
+      ],
+      "density": 0.61
+    },
+    {
+      "id": "cocoa_powder",
+      "names": [
+        "cocoa powder",
+        "cocoa",
+        "cacao powder",
+        "unsweetened cocoa"
+      ],
+      "density": 0.357
+    },
+    {
+      "id": "baking_powder",
+      "names": [
+        "baking powder"
+      ],
+      "density": 0.812
+    },
+    {
+      "id": "baking_soda",
+      "names": [
+        "baking soda",
+        "bicarb",
+        "bicarbonate of soda",
+        "sodium bicarbonate"
+      ],
+      "density": 1.217
+    },
+    {
+      "id": "yeast_dry",
+      "names": [
+        "yeast",
+        "active dry yeast",
+        "instant yeast",
+        "rapid rise yeast",
+        "bread machine yeast"
+      ],
+      "density": 0.631
+    },
+    {
+      "id": "sugar_granulated",
+      "names": [
+        "sugar",
+        "white sugar",
+        "granulated sugar",
+        "table sugar",
+        "caster sugar"
+      ],
+      "density": 0.845
+    },
+    {
+      "id": "sugar_brown",
+      "names": [
+        "brown sugar",
+        "light brown sugar",
+        "dark brown sugar",
+        "soft brown sugar",
+        "muscovado sugar"
+      ],
+      "density": 0.864
+    },
+    {
+      "id": "sugar_powdered",
+      "names": [
+        "powdered sugar",
+        "confectioners sugar",
+        "icing sugar",
+        "10x sugar"
+      ],
+      "density": 0.47
+    },
+    {
+      "id": "sugar_coconut",
+      "names": [
+        "coconut sugar",
+        "palm sugar"
+      ],
+      "density": 0.65
+    },
+    {
+      "id": "honey",
+      "names": [
+        "honey",
+        "raw honey",
+        "clover honey",
+        "clear honey"
+      ],
+      "density": 1.429
+    },
+    {
+      "id": "maple_syrup",
+      "names": [
+        "maple syrup",
+        "pancake syrup",
+        "real maple syrup"
+      ],
+      "density": 1.319
+    },
+    {
+      "id": "molasses",
+      "names": [
+        "molasses",
+        "blackstrap molasses",
+        "treacle",
+        "dark treacle"
+      ],
+      "density": 1.437
+    },
+    {
+      "id": "corn_syrup",
+      "names": [
+        "corn syrup",
+        "light corn syrup",
+        "dark corn syrup",
+        "glucose syrup"
+      ],
+      "density": 1.318
+    },
+    {
+      "id": "agave_nectar",
+      "names": [
+        "agave",
+        "agave nectar",
+        "agave syrup"
+      ],
+      "density": 1.42
+    },
+    {
+      "id": "butter",
+      "names": [
+        "butter",
+        "salted butter",
+        "unsalted butter",
+        "stick of butter"
+      ],
+      "density": 0.96
+    },
+    {
+      "id": "ghee",
+      "names": [
+        "ghee",
+        "clarified butter"
+      ],
+      "density": 0.744
+    },
+    {
+      "id": "lard",
+      "names": [
+        "lard",
+        "tallow",
+        "animal fat",
+        "shortening"
+      ],
+      "density": 0.95
+    },
+    {
+      "id": "oil_vegetable",
+      "names": [
+        "cooking oil",
+        "oil",
+        "vegetable oil",
+        "canola oil",
+        "rapeseed oil",
+        "sunflower oil",
+        "corn oil"
+      ],
+      "density": 0.91
+    },
+    {
+      "id": "oil_olive",
+      "names": [
+        "olive oil",
+        "evoo",
+        "extra virgin olive oil",
+        "virgin olive oil"
+      ],
+      "density": 0.914
+    },
+    {
+      "id": "oil_coconut",
+      "names": [
+        "coconut oil",
+        "liquid coconut oil",
+        "melted coconut oil"
+      ],
+      "density": 0.925
+    },
+    {
+      "id": "oil_sesame",
+      "names": [
+        "sesame oil",
+        "toasted sesame oil"
+      ],
+      "density": 0.919
+    },
+    {
+      "id": "water",
+      "names": [
+        "water",
+        "tap water",
+        "h2o",
+        "boiling water",
+        "iced water"
+      ],
+      "density": 0.997
+    },
+    {
+      "id": "milk_whole",
+      "names": [
+        "milk",
+        "whole milk",
+        "full fat milk",
+        "cow milk",
+        "dairy milk"
+      ],
+      "density": 1.022
+    },
+    {
+      "id": "milk_skim",
+      "names": [
+        "skim milk",
+        "skimmed milk",
+        "non-fat milk",
+        "0% milk"
+      ],
+      "density": 1.036
+    },
+    {
+      "id": "heavy_cream",
+      "names": [
+        "heavy cream",
+        "heavy whipping cream",
+        "double cream",
+        "whipping cream"
+      ],
+      "density": 0.959
+    },
+    {
+      "id": "buttermilk",
+      "names": [
+        "buttermilk",
+        "cultured buttermilk"
+      ],
+      "density": 0.96
+    },
+    {
+      "id": "sour_cream",
+      "names": [
+        "sour cream",
+        "set cream",
+        "creme fraiche"
+      ],
+      "density": 0.959
+    },
+    {
+      "id": "yogurt_plain",
+      "names": [
+        "yogurt",
+        "plain yogurt",
+        "natural yogurt",
+        "yoghurt"
+      ],
+      "density": 0.959
+    },
+    {
+      "id": "milk_coconut",
+      "names": [
+        "coconut milk",
+        "canned coconut milk",
+        "full fat coconut milk"
+      ],
+      "density": 1.018
+    },
+    {
+      "id": "milk_almond",
+      "names": [
+        "almond milk",
+        "unsweetened almond milk"
+      ],
+      "density": 1.01
+    },
+    {
+      "id": "rice_white",
+      "names": [
+        "rice",
+        "white rice",
+        "long grain rice",
+        "jasmine rice",
+        "basmati rice"
+      ],
+      "density": 0.807
+    },
+    {
+      "id": "rice_white_short",
+      "names": [
+        "short grain rice",
+        "short grain brown rice",
+        "sushi rice",
+        "arborio rice"
+      ],
+      "density": 0.845
+    },
+    {
+      "id": "rice_brown",
+      "names": [
+        "brown rice",
+        "whole grain rice"
+      ],
+      "density": 0.75
+    },
+    {
+      "id": "quinoa",
+      "names": [
+        "quinoa",
+        "uncooked quinoa",
+        "red quinoa",
+        "white quinoa",
+        "raw quinoa"
+      ],
+      "density": 0.782
+    },
+    {
+      "id": "oats_rolled",
+      "names": [
+        "oats",
+        "rolled oats",
+        "old fashioned oats",
+        "porridge oats",
+        "whole oats"
+      ],
+      "density": 0.37
+    },
+    {
+      "id": "oats_quick",
+      "names": [
+        "quick oats",
+        "instant oats",
+        "quick cooking oats"
+      ],
+      "density": 0.36
+    },
+    {
+      "id": "panko",
+      "names": [
+        "panko"
+      ],
+      "density": 0.211
+    },
+    {
+      "id": "breadcrumbs",
+      "names": [
+        "breadcrumbs",
+        "dried breadcrumbs"
+      ],
+      "density": 0.659
+    },
+    {
+      "id": "breadcrumbs_fresh",
+      "names": [
+        "fresh breadcrumbs"
+      ],
+      "density": 0.3
+    },
+    {
+      "id": "salt",
+      "names": [
+        "salt",
+        "table salt",
+        "fine salt",
+        "sea salt",
+        "kosher salt"
+      ],
+      "density": 1.26
+    },
+    {
+      "id": "mayonnaise",
+      "names": [
+        "mayo",
+        "mayonnaise",
+        "salad dressing"
+      ],
+      "density": 0.955
+    },
+    {
+      "id": "peanut_butter",
+      "names": [
+        "peanut butter",
+        "smooth peanut butter",
+        "crunchy peanut butter",
+        "pb"
+      ],
+      "density": 1.141
+    },
+    {
+      "id": "soy_sauce",
+      "names": [
+        "soy sauce",
+        "shoyu",
+        "tamari",
+        "light soy sauce"
+      ],
+      "density": 1.12
+    },
+    {
+      "id": "vinegar_white",
+      "names": [
+        "vinegar",
+        "white vinegar",
+        "distilled vinegar"
+      ],
+      "density": 1.01
+    },
+    {
+      "id": "vinegar_apple_cidar",
+      "names": [
+        "apple cider vinegar"
+      ],
+      "density": 1.03
+    },
+    {
+      "id": "vinegar_balsamic",
+      "names": [
+        "balsamic vinegar",
+        "balsamic"
+      ],
+      "density": 1.08
+    },
+    {
+      "id": "tomato_paste",
+      "names": [
+        "tomato paste",
+        "tomato concentrate",
+        "tomato puree"
+      ],
+      "density": 0.98
+    },
+    {
+      "id": "pumpkin_puree",
+      "names": [
+        "pumpkin puree",
+        "canned pumpkin",
+        "pumpkin"
+      ],
+      "density": 0.959
+    },
+    {
+      "id": "milk_soy",
+      "names": [
+        "soy milk",
+        "soya milk",
+        "soyamilk",
+        "unsweetened soy milk"
+      ],
+      "density": 1.04
+    },
+    {
+      "id": "milk_oat",
+      "names": [
+        "oat milk",
+        "oat drink",
+        "oatmilk"
+      ],
+      "density": 1.03
+    },
+    {
+      "id": "yogurt_greek",
+      "names": [
+        "greek yogurt",
+        "greek yoghurt",
+        "strained yogurt",
+        "jogurt",
+        "joghurt"
+      ],
+      "density": 0.99
+    },
+    {
+      "id": "gochujang",
+      "names": [
+        "gochujang",
+        "korean chili paste",
+        "korean hot pepper paste",
+        "red chili paste"
+      ],
+      "density": 1.18
+    },
+    {
+      "id": "ssamjang",
+      "names": [
+        "ssamjang",
+        "korean dipping paste",
+        "seasoned soybean paste"
+      ],
+      "density": 1.33
+    },
+    {
+      "id": "doenjang",
+      "names": [
+        "doenjang",
+        "korean soybean paste",
+        "fermented bean paste"
+      ],
+      "density": 1.33
+    },
+    {
+      "id": "miso_paste",
+      "names": [
+        "miso",
+        "miso paste",
+        "white miso",
+        "red miso",
+        "yellow miso"
+      ],
+      "density": 1.12
+    },
+    {
+      "id": "tahini",
+      "names": [
+        "tahini",
+        "sesame paste",
+        "tahina"
+      ],
+      "density": 1.082
+    },
+    {
+      "id": "chocolate_chips",
+      "names": [
+        "chocolate chips",
+        "semi-sweet chocolate chips",
+        "dark chocolate chips",
+        "baking chips"
+      ],
+      "density": 0.718
+    },
+    {
+      "id": "coconut_shredded",
+      "names": [
+        "shredded coconut",
+        "desiccated coconut",
+        "coconut flakes",
+        "dried coconut"
+      ],
+      "density": 0.358
+    },
+    {
+      "id": "seeds_chia",
+      "names": [
+        "chia seeds",
+        "chia"
+      ],
+      "density": 0.626
+    },
+    {
+      "id": "seeds_flax",
+      "names": [
+        "flax seeds",
+        "ground flaxseeds",
+        "flax meal",
+        "linseed",
+        "ground linseed"
+      ],
+      "density": 0.423
+    },
+    {
+      "id": "couscous",
+      "names": [
+        "couscous",
+        "dry couscous",
+        "israeli couscous"
+      ],
+      "density": 0.762
+    },
+    {
+      "id": "almond_butter",
+      "names": [
+        "almond butter",
+        "creamy almond butter",
+        "nut butter"
+      ],
+      "density": 1.149
+    },
+    {
+      "id": "harissa",
+      "names": [
+        "harissa",
+        "harissa paste",
+        "north african chili paste"
+      ],
+      "density": 1.05
+    },
+    {
+      "id": "applesauce",
+      "names": [
+        "applesauce",
+        "apple sauce",
+        "unsweetened applesauce",
+        "pureed apples"
+      ],
+      "density": 1.074
+    },
+    {
+      "id": "banana_mashed",
+      "names": [
+        "mashed banana",
+        "banana puree",
+        "mashed bananas",
+        "ripe bananas"
+      ],
+      "density": 0.955
+    },
+    {
+      "id": "milk_condensed",
+      "names": [
+        "condensed milk",
+        "sweetened condensed milk"
+      ],
+      "density": 1.251
+    },
+    {
+      "id": "milk_evaporated",
+      "names": [
+        "evaporated milk",
+        "unsweetened condensed milk"
+      ],
+      "density": 0.955
+    },
+    {
+      "id": "starch_potato",
+      "names": [
+        "potato starch"
+      ],
+      "density": 0.642
+    },
+    {
+      "id": "flour_potato",
+      "names": [
+        "potato flour"
+      ],
+      "density": 0.757
+    },
+    {
+      "id": "flour_semolina",
+      "names": [
+        "semolina",
+        "semolina flour",
+        "durum flour",
+        "pasta flour"
+      ],
+      "density": 0.689
+    },
+    {
+      "id": "flour_coconut",
+      "names": [
+        "coconut flour"
+      ],
+      "density": 0.54
+    },
+    {
+      "id": "vital_wheat_gluten",
+      "names": [
+        "vital wheat gluten",
+        "wheat gluten",
+        "seitan powder",
+        "gluten flour"
+      ],
+      "density": 0.61
+    },
+    {
+      "id": "lentils_dry",
+      "names": [
+        "lentils",
+        "dry lentils",
+        "red lentils",
+        "green lentils",
+        "brown lentils"
+      ],
+      "density": 0.85
+    },
+    {
+      "id": "ketchup",
+      "names": [
+        "ketchup",
+        "catsup",
+        "tomato ketchup"
+      ],
+      "density": 1.15
+    },
+    {
+      "id": "mustard",
+      "names": [
+        "mustard",
+        "yellow mustard",
+        "dijon mustard",
+        "prepared mustard"
+      ],
+      "density": 1.09
+    },
+    {
+      "id": "curry_paste",
+      "names": [
+        "curry paste",
+        "red curry paste",
+        "green curry paste",
+        "thai curry paste"
+      ],
+      "density": 1.03
+    },
+    {
+      "id": "extract_vanilla",
+      "names": [
+        "vanilla extract",
+        "vanilla",
+        "vanilla essence"
+      ],
+      "density": 0.95
+    }
+  ]
+}
