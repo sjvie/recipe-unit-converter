@@ -1,4 +1,6 @@
-from .models import ConversionResult
+from typing import Optional
+
+from .models import ConversionResult, ParsedQuery
 from .repository import Repository
 from .parser import Parser
 from .matcher import IngredientMatcher
@@ -6,15 +8,16 @@ from .exceptions import InvalidConversionError
 
 
 class Converter:
-    def __init__(self, repo: Repository):
-        self.repo = repo
-        self.parser = Parser()
-        self.matcher = IngredientMatcher(repo)
+    def __init__(self, repo: Repository) -> None:
+        self.repo: Repository = repo
+        self.parser: Parser = Parser()
+        self.matcher: IngredientMatcher = IngredientMatcher(repo)
 
 
     def _convert_temp(self, value: float, from_unit: str, to_unit: str) -> float:
         """Affine temperature conversion."""
         # Normalize to Celsius
+        c_val: float
         if from_unit == 'f':
             c_val = (value - 32) * 5/9
         elif from_unit == 'k':
@@ -33,18 +36,18 @@ class Converter:
 
     def convert(self, query_text: str, target_unit: str) -> ConversionResult:
         # 1. Parse
-        parsed = self.parser.parse(query_text)
-        
+        parsed: ParsedQuery = self.parser.parse(query_text)
+
         target_unit = target_unit.lower()
-        source_unit = parsed.unit
+        source_unit: str = parsed.unit
 
         # 2. Validate Types
-        source_type = self.repo.get_unit_type(source_unit)
-        target_type = self.repo.get_unit_type(target_unit)
+        source_type: str = self.repo.get_unit_type(source_unit)
+        target_type: str = self.repo.get_unit_type(target_unit)
 
-        final_value = 0.0
-        explanation = ""
-        ingredient = None
+        final_value: float = 0.0
+        explanation: str = ""
+        ingredient: Optional[str] = None
 
         # 3. Route Logic
         
@@ -58,10 +61,10 @@ class Converter:
 
         # --- Scenario 2: Same Category (Linear) ---
         elif source_type == target_type:
-            source_factor = self.repo.get_factor(source_unit)
-            target_factor = self.repo.get_factor(target_unit)
-            
-            base_qty = parsed.quantity * source_factor
+            source_factor: float = self.repo.get_factor(source_unit)
+            target_factor: float = self.repo.get_factor(target_unit)
+
+            base_qty: float = parsed.quantity * source_factor
             final_value = base_qty / target_factor
             explanation = f"Direct conversion ({source_type})."
 
@@ -73,13 +76,17 @@ class Converter:
                 )
             # Need an ingredient
             ingredient_entry = self.matcher.match(parsed.ingredient)
-            density = ingredient_entry.density  # g/ml
-            
+            if ingredient_entry.density is None:
+                raise InvalidConversionError(
+                    f"No density data available for ingredient '{ingredient_entry.names[0]}'."
+                )
+            density: float = ingredient_entry.density  # g/ml
+
             # Convert Source to Base (ml or g)
             source_factor = self.repo.get_factor(source_unit)
-            base_source_qty = parsed.quantity * source_factor
-            
-            base_target_qty = 0.0
+            base_source_qty: float = parsed.quantity * source_factor
+
+            base_target_qty: float = 0.0
 
             # Vol -> Weight (Mass = Vol * Density)
             if source_type == 'volume' and target_type == 'weight':

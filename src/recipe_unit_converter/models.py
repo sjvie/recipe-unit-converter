@@ -36,7 +36,7 @@ class IngredientEntry(BaseModel):
     id: str
     names: List[str]
     density: Optional[float] = None
-    source: Optional[List[Dict]] = None
+    source: Optional[List[Dict[str, str]]] = None
 
 # --- Application Models ---
 

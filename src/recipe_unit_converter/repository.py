@@ -1,7 +1,7 @@
 import json
 import logging
 from pathlib import Path
-from typing import List, Dict
+from typing import List, Dict, Any
 
 from .models import UnitsDb, IngredientEntry
 from .exceptions import UnitNotFoundError, IngredientNotFoundError
@@ -10,22 +10,23 @@ logger = logging.getLogger(__name__)
 
 
 class Repository:
-    def __init__(self, data_dir: Path):
-        self.data_dir = data_dir
+    def __init__(self, data_dir: Path) -> None:
+        self.data_dir: Path = data_dir
         self.units_db: UnitsDb
         self.ingredients: List[IngredientEntry]
         self._alias_map: Dict[str, IngredientEntry]
         self._unit_alias_map: Dict[str, str]
-        
+
         self._load_data()
         self._build_unit_alias_map()
 
 
-    def _load_data(self):
+    def _load_data(self) -> None:
         # Load Units
         try:
             with open(self.data_dir / "units.json", "r") as f:
-                self.units_db = UnitsDb(**json.load(f))
+                raw_data: Any = json.load(f)
+                self.units_db = UnitsDb(**raw_data)
         except FileNotFoundError:
             logger.error("units.json not found")
             raise
@@ -38,28 +39,28 @@ class Repository:
         except FileNotFoundError:
             logger.error("ingredients.json not found")
             raise
-        
+
         # Build O(1) Alias Map
         self._alias_map = {}
         for ing in self.ingredients:
             for name in ing.names:
                 self._alias_map[name.lower()] = ing
 
-    def _build_unit_alias_map(self):
+    def _build_unit_alias_map(self) -> None:
         """Build a master lookup index mapping all unit aliases to their canonical keys."""
         self._unit_alias_map = {}
-        
+
         # Process volume units
         for canonical_key, unit_detail in self.units_db.volume.units.items():
             # Add canonical key pointing to itself
-            normalized_key = canonical_key.lower().strip()
+            normalized_key: str = canonical_key.lower().strip()
             self._unit_alias_map[normalized_key] = canonical_key
-            
+
             # Add all aliases pointing to canonical key
             for alias in unit_detail.aliases:
-                normalized_alias = alias.lower().strip()
+                normalized_alias: str = alias.lower().strip()
                 if normalized_alias in self._unit_alias_map:
-                    collision_key = self._unit_alias_map[normalized_alias]
+                    collision_key: str = self._unit_alias_map[normalized_alias]
                     logger.warning(
                         f"Alias collision: '{normalized_alias}' already mapped to '{collision_key}' "
                         f"(volume), now also found in volume unit '{canonical_key}'. "
@@ -81,7 +82,7 @@ class Repository:
                 )
             else:
                 self._unit_alias_map[normalized_key] = canonical_key
-            
+
             # Add all aliases pointing to canonical key
             for alias in unit_detail.aliases:
                 normalized_alias = alias.lower().strip()
@@ -96,7 +97,7 @@ class Repository:
                     self._unit_alias_map[normalized_alias] = canonical_key
         
         # Process temperature units
-        for canonical_key, unit_detail in self.units_db.temperature.units.items():
+        for canonical_key, temp_unit_detail in self.units_db.temperature.units.items():
             normalized_key = canonical_key.lower().strip()
             if normalized_key in self._unit_alias_map:
                 collision_key = self._unit_alias_map[normalized_key]
@@ -107,8 +108,8 @@ class Repository:
                 )
             else:
                 self._unit_alias_map[normalized_key] = canonical_key
-            
-            for alias in unit_detail.aliases:
+
+            for alias in temp_unit_detail.aliases:
                 normalized_alias = alias.lower().strip()
                 if normalized_alias in self._unit_alias_map:
                     collision_key = self._unit_alias_map[normalized_alias]
@@ -123,17 +124,17 @@ class Repository:
     def _resolve_unit(self, raw_input: str) -> str:
         """
         Resolve a user input string to its canonical unit key.
-        
+
         Args:
             raw_input: User-provided unit string (e.g., "Grams", "tbsp")
-            
+
         Returns:
             Canonical unit key (e.g., "g", "tbsp")
-            
+
         Raises:
             UnitNotFoundError: If the input cannot be resolved to a known unit
         """
-        normalized = raw_input.lower().strip()
+        normalized: str = raw_input.lower().strip()
         if normalized in self._unit_alias_map:
             return self._unit_alias_map[normalized]
         raise UnitNotFoundError(f"Unit '{raw_input}' is not recognized.")
@@ -141,41 +142,41 @@ class Repository:
     def get_unit_type(self, unit_name: str) -> str:
         """
         Returns 'volume', 'weight', 'temperature' or raises UnitNotFoundError.
-        
+
         Args:
             unit_name: User-provided unit name (supports aliases)
-            
+
         Returns:
             The type of unit: 'volume', 'weight', or 'temperature'
         """
-        canonical_key = self._resolve_unit(unit_name)
-        
+        canonical_key: str = self._resolve_unit(unit_name)
+
         if canonical_key in self.units_db.volume.units:
             return "volume"
         if canonical_key in self.units_db.weight.units:
             return "weight"
         if canonical_key in self.units_db.temperature.units:
             return "temperature"
-        
+
         raise UnitNotFoundError(f"Unit '{unit_name}' type could not be determined.")
 
     def get_factor(self, unit_name: str) -> float:
         """
         Returns conversion factor to base unit.
-        
+
         Args:
             unit_name: User-provided unit name (supports aliases)
-            
+
         Returns:
             The conversion factor to the base unit
         """
-        canonical_key = self._resolve_unit(unit_name)
-        
+        canonical_key: str = self._resolve_unit(unit_name)
+
         if canonical_key in self.units_db.volume.units:
             return self.units_db.volume.units[canonical_key].factor
         if canonical_key in self.units_db.weight.units:
             return self.units_db.weight.units[canonical_key].factor
-        
+
         # Temperature does not use simple factors
         raise UnitNotFoundError(f"No linear factor for unit '{unit_name}'.")
 
