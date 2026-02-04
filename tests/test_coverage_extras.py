@@ -215,7 +215,7 @@ class TestCLIEdgeCases:
             raise RuntimeError("Unexpected error")
 
         monkeypatch.setattr(sys, 'argv', ['recipe-convert', '1 cup', '--to', 'ml'])
-        monkeypatch.setattr('src.recipe_unit_converter.cli.Converter', mock_converter_init)
+        monkeypatch.setattr('recipe_unit_converter.cli.Converter', mock_converter_init)
 
         with pytest.raises(SystemExit) as exc_info:
             main()
