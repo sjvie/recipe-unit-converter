@@ -1,5 +1,7 @@
 # Recipe Unit Converter
 
+![Tests](https://github.com/sjvie/recipe-unit-converter/actions/workflows/test.yml/badge.svg)
+
 Convert between recipe measurement units (cups, grams, tablespoons, etc.)
 
 ## Installation
@@ -70,4 +72,4 @@ mypy src/recipe_unit_converter/ --strict
 
 ## License
 
-MIT
+[MIT](LICENSE)
