@@ -2,7 +2,6 @@ import pytest
 import json
 from pathlib import Path
 from src.recipe_unit_converter.repository import Repository
-from src.recipe_unit_converter.matcher import IngredientMatcher
 from src.recipe_unit_converter.converter import Converter
 from src.recipe_unit_converter.parser import Parser
 from src.recipe_unit_converter.exceptions import (
@@ -179,11 +178,10 @@ class TestMatcherEdgeCases:
         (tmp_path / "ingredients.json").write_text(json.dumps(ingredients_data))
 
         repo = Repository(tmp_path)
-        matcher = IngredientMatcher(repo)
 
         # Use a typo that fuzzy matches both sugar types
         with pytest.raises(IngredientAmbiguousError, match="Ambiguous ingredient"):
-            matcher.match("suger")
+            repo.match_ingredient("suger")
 
     def test_fuzzy_match_returns_none(self, tmp_path):
         """Test when fuzzy match finds a name but ingredient entry is None."""
@@ -199,10 +197,9 @@ class TestMatcherEdgeCases:
         (tmp_path / "ingredients.json").write_text(json.dumps(ingredients_data))
 
         repo = Repository(tmp_path)
-        matcher = IngredientMatcher(repo)
 
         with pytest.raises(IngredientNotFoundError):
-            matcher.match("anything")
+            repo.match_ingredient("anything")
 
 
 class TestCLIEdgeCases:

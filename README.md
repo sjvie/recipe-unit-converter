@@ -28,17 +28,24 @@ Supported quantity formats:
 ### Python API
 
 ```python
-from recipe_unit_converter import Converter, Repository
-from pathlib import Path
-from importlib.resources import files
+from recipe_unit_converter import Converter
 
-# Load data from package
-data_path = files('recipe_unit_converter') / 'data'
-
-repo = Repository(data_path)
-converter = Converter(repo)
+# Simple usage with bundled data
+converter = Converter()
 result = converter.convert("2 cups flour", "grams")
 print(f"{result.result_value} {result.result_unit}")
+# Output: 241.7929 grams
+```
+
+**Advanced: Using custom data**
+```python
+from recipe_unit_converter import Converter, Repository
+from pathlib import Path
+
+# Load custom data files
+repo = Repository(Path("/path/to/custom/data"))
+converter = Converter(repository=repo)
+result = converter.convert("2 cups flour", "grams")
 ```
 
 ## Development

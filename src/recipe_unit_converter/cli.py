@@ -1,11 +1,7 @@
 import sys
 import argparse
 import json
-from pathlib import Path
-from typing import NoReturn
-from importlib.resources import files
 
-from .repository import Repository
 from .converter import Converter
 from .models import ConversionResult
 from .exceptions import ConverterError
@@ -74,12 +70,8 @@ def main() -> None:
     args = parser.parse_args()
 
     try:
-        # Load data from package
-        data_path = Path(str(files('recipe_unit_converter') / 'data'))
-
-        # Initialize converter
-        repo = Repository(data_path)
-        converter = Converter(repo)
+        # Initialize converter (auto-loads bundled data)
+        converter = Converter()
 
         # Perform conversion
         result = converter.convert(args.query, args.target_unit)

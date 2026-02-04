@@ -1,17 +1,32 @@
 from typing import Optional
+from pathlib import Path
+
+try:
+    from importlib.resources import files
+except ImportError:
+    from importlib_resources import files  # type: ignore
 
 from .models import ConversionResult, ParsedQuery
 from .repository import Repository
 from .parser import Parser
-from .matcher import IngredientMatcher
 from .exceptions import InvalidConversionError
 
 
 class Converter:
-    def __init__(self, repo: Repository) -> None:
-        self.repo: Repository = repo
+    def __init__(self, repository: Optional[Repository] = None) -> None:
+        """
+        Initialize the converter.
+
+        Args:
+            repository: Optional custom Repository. If None, uses bundled data.
+        """
+        if repository is None:
+            # Auto-load bundled data
+            data_path = Path(str(files('recipe_unit_converter') / 'data'))
+            self.repo: Repository = Repository(data_path)
+        else:
+            self.repo = repository
         self.parser: Parser = Parser()
-        self.matcher: IngredientMatcher = IngredientMatcher(repo)
 
 
     def _convert_temp(self, value: float, from_unit: str, to_unit: str) -> float:
@@ -75,7 +90,7 @@ class Converter:
                     "Ingredient must be specified for conversions between volume and weight."
                 )
             # Need an ingredient
-            ingredient_entry = self.matcher.match(parsed.ingredient)
+            ingredient_entry = self.repo.match_ingredient(parsed.ingredient)
             if ingredient_entry.density is None:
                 raise InvalidConversionError(
                     f"No density data available for ingredient '{ingredient_entry.names[0]}'."

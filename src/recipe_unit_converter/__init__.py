@@ -3,7 +3,6 @@
 from .converter import Converter
 from .repository import Repository
 from .parser import Parser
-from .matcher import IngredientMatcher
 from .models import (
     ParsedQuery,
     ConversionResult,
@@ -25,7 +24,6 @@ __all__ = [
     "Converter",
     "Repository",
     "Parser",
-    "IngredientMatcher",
     # Models
     "ParsedQuery",
     "ConversionResult",

@@ -1,7 +1,6 @@
 import pytest
 from pathlib import Path
 from src.recipe_unit_converter.repository import Repository
-from src.recipe_unit_converter.matcher import IngredientMatcher
 from src.recipe_unit_converter.exceptions import IngredientNotFoundError, IngredientAmbiguousError
 
 
@@ -12,30 +11,24 @@ def repo():
     return Repository(base_path)
 
 
-@pytest.fixture
-def matcher(repo):
-    """Create a matcher instance."""
-    return IngredientMatcher(repo)
-
-
 class TestExactMatching:
     """Test exact ingredient matching."""
 
-    def test_exact_match(self, matcher):
+    def test_exact_match(self, repo):
         """Should match ingredient exactly."""
-        result = matcher.match("water")
+        result = repo.match_ingredient("water")
         assert result is not None
         assert "water" in result.names
 
-    def test_case_insensitive(self, matcher):
+    def test_case_insensitive(self, repo):
         """Matching should be case-insensitive."""
-        result1 = matcher.match("water")
-        result2 = matcher.match("WATER")
+        result1 = repo.match_ingredient("water")
+        result2 = repo.match_ingredient("WATER")
         assert result1.id == result2.id
 
-    def test_whitespace_handling(self, matcher):
+    def test_whitespace_handling(self, repo):
         """Should handle extra whitespace."""
-        result = matcher.match("  water  ")
+        result = repo.match_ingredient("  water  ")
         assert result is not None
         assert "water" in result.names
 
@@ -43,23 +36,23 @@ class TestExactMatching:
 class TestFuzzyMatching:
     """Test fuzzy ingredient matching."""
 
-    def test_close_match(self, matcher):
+    def test_close_match(self, repo):
         """Should fuzzy match close ingredient names."""
         # This assumes "flour" exists in database
         # and "flou" is close enough
         try:
-            result = matcher.match("flou")
+            result = repo.match_ingredient("flou")
             assert "flour" in result.names or result is not None
         except IngredientNotFoundError:
             # If fuzzy matching doesn't work at this cutoff, that's okay
             pass
 
-    def test_typo_matching(self, matcher):
+    def test_typo_matching(self, repo):
         """Should match common typos."""
         # This test depends on actual data
         # If "flour" is in database, "flowr" might match
         try:
-            result = matcher.match("flowr")
+            result = repo.match_ingredient("flowr")
             # If it matches, great
             assert result is not None
         except IngredientNotFoundError:
@@ -70,35 +63,35 @@ class TestFuzzyMatching:
 class TestErrorHandling:
     """Test error handling in matcher."""
 
-    def test_empty_string_error(self, matcher):
+    def test_empty_string_error(self, repo):
         """Empty ingredient should raise error."""
         with pytest.raises(IngredientNotFoundError, match="No ingredient specified"):
-            matcher.match("")
+            repo.match_ingredient("")
 
-    def test_not_found_error(self, matcher):
+    def test_not_found_error(self, repo):
         """Unknown ingredient should raise error."""
         with pytest.raises(IngredientNotFoundError):
-            matcher.match("completelyfakefooditem12345")
+            repo.match_ingredient("completelyfakefooditem12345")
 
-    def test_not_found_error_message(self, matcher):
+    def test_not_found_error_message(self, repo):
         """Error message should include ingredient name."""
         with pytest.raises(IngredientNotFoundError, match="notfound123"):
-            matcher.match("notfound123")
+            repo.match_ingredient("notfound123")
 
 
 class TestDensityRetrieval:
     """Test that matched ingredients have density data."""
 
-    def test_water_has_density(self, matcher):
+    def test_water_has_density(self, repo):
         """Water should have density data."""
-        result = matcher.match("water")
+        result = repo.match_ingredient("water")
         assert result.density is not None
         # Water density should be close to 1.0 g/ml
         assert 0.9 < result.density < 1.1
 
-    def test_flour_has_density(self, matcher):
+    def test_flour_has_density(self, repo):
         """Flour should have density data."""
-        result = matcher.match("flour")
+        result = repo.match_ingredient("flour")
         assert result.density is not None
         # Flour density should be reasonable (less than water)
         assert 0.4 < result.density < 0.8
