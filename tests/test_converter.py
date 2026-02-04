@@ -8,7 +8,7 @@ from recipe_unit_converter.exceptions import InvalidConversionError, ParsingErro
 @pytest.fixture
 def repo():
     """Create a repository with test data."""
-    base_path = Path(__file__).parent.parent / "data"
+    base_path = Path(__file__).parent.parent / "src" / "recipe_unit_converter" / "data"
     return Repository(base_path)
 
 
