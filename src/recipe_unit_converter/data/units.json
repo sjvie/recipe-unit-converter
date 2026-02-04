@@ -28,11 +28,11 @@
       },
       "pint": {
         "factor": 473.18,
-        "aliases": ["pint", "pints", "pt"]
+        "aliases": ["pints", "pt"]
       },
       "quart": {
         "factor": 946.35,
-        "aliases": ["quart", "quarts", "qt"]
+        "aliases": ["quarts", "qt"]
       },
       "gal": {
         "factor": 3785.411,
