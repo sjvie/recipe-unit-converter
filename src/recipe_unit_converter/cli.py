@@ -1,7 +1,6 @@
 import sys
 import argparse
 import json
-import logging
 from pathlib import Path
 from typing import NoReturn
 from importlib.resources import files
@@ -51,9 +50,6 @@ def format_output(result: ConversionResult, format_type: str) -> str:
 
 def main() -> None:
     """Main CLI entry point."""
-    # Suppress internal warnings for CLI usage
-    logging.getLogger('recipe_unit_converter').setLevel(logging.ERROR)
-
     parser = argparse.ArgumentParser(
         description="Convert between recipe measurement units",
         epilog="Example: recipe-convert '2 cups flour' --to grams"
